@@ -8,6 +8,16 @@ capcut_projects_folder = C:\Path\To\Your\CapCut Drafts
 xml_folder = C:\Path\To\Your\Sony\XML\Files
 
 [SETTINGS]
-# The color of the markers in CapCut. 
+# Default color for unknown markers.
 # Typical colors: #00c1cd (Teal), #FC7265 (Coral/Red), #ffbc00 (Yellow)
-default_color = #FC7265
+default_color = #00c1cd
+
+# --- SONY SHOT MARKER SETTINGS ---
+
+# Configuration for ShotMark1 (e.g., "Good Take")
+color_shotmark1 = #00c1cd
+label_shotmark1 = Good Take
+
+# Configuration for ShotMark2 (e.g., "Highlight")
+color_shotmark2 = #FC7265
+label_shotmark2 = Highlight

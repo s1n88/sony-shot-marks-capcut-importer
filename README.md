@@ -1,17 +1,21 @@
 # Sony Shot-Marks to CapCut Importer
-
 A Python tool that automatically imports Sony's Shot Marks (from XML files) directly onto video clips in the CapCut desktop timeline.
 
-## Features
-- **Clip-Level Markers:** Unlike other tools, this places markers directly on the clip, not the global timeline.
-- **Auto-Matching:** Automatically matches XML files to clips in your CapCut project based on file prefixes.
-- **Smart Filtering:** Ignores the default Sony "Frame 0" marker.
+## ✨ Features
+- **Clip-focused:** Markers stick to the clip, not the global timeline.
+- **Multi-Color Support:** Differentiate between **ShotMark1** and **ShotMark2** with custom colors.
+- **Custom Labels:** Rename markers (e.g., "Good Take" or "SlowMo") directly in the config.
+- **Smart Sync:** Auto-detects FPS and matches XML files to clips in your CapCut project based on file prefixes.
+- **Sony Optimized:** Automatically filters out the default "Frame 0" marker.
 - **Safety:** Automatically creates a backup of your `draft_content.json` before making changes.
 
 ## Setup
-1. Copy `config.ini.example` to `config.ini`.
-2. Enter your CapCut projects folder path and the folder containing your Sony XMLs.
-3. Run `python main.py`.
+1. **Download:** Clone or download this repository.
+2. **Configure:** Rename `config.ini.example` to `config.ini`.
+3. **Paths:** Open `config.ini` and set your paths:
+   - `capcut_projects_folder`: Where your projects live. 
+   - `xml_folder`: Where your Sony XML files are stored.
+4. **Customize (Optional):** Set your preferred colors and labels for ShotMark1 and ShotMark2.
 
 ## How to use
 Follow these steps to ensure the markers are imported correctly:
@@ -25,5 +29,4 @@ Follow these steps to ensure the markers are imported correctly:
 
 ## Requirements
 - Python 3.x
-
 - CapCut Desktop (Windows)
