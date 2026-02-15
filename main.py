@@ -65,11 +65,24 @@ def select_project(base_folder):
 # ==============================
 # XML PARSING (Filters Frame 0)
 # ==============================
-def parse_xml_for_markers(xml_path, fps=50):
+def parse_xml_for_markers(xml_path):
     try:
         tree = ET.parse(xml_path)
         root = tree.getroot()
         ns = {'ns': 'urn:schemas-professionalDisc:nonRealTimeMeta:ver.2.20'}
+        
+        # --- NEW: AUTO-DETECT FPS ---
+        fps = 50.0  # Default fallback
+        video_format = root.find(".//ns:VideoFormat", ns)
+        if video_format is not None:
+            video_frame = video_format.find("ns:VideoFrame", ns)
+            if video_frame is not None:
+                video_fps_str = video_frame.attrib.get("videoInPointsPerSecond", "50")
+                # Format is often "50p", "25p" or just "50"
+                fps = float(video_fps_str.replace('p', '').replace('i', ''))
+                # print(f"DEBUG: Detected {fps} FPS for {os.path.basename(xml_path)}")
+        # ----------------------------
+
         markers = []
         klv_table = root.find("ns:KlvPacketTable", ns)
         if klv_table is None: return []
@@ -78,7 +91,6 @@ def parse_xml_for_markers(xml_path, fps=50):
             if klv.attrib.get("status") == "spot":
                 frame_count = int(klv.attrib.get("frameCount", 0))
                 
-                # Ignore Frame 0 (Sony Default Marker)
                 if frame_count <= 0:
                     continue
                 
@@ -88,6 +100,7 @@ def parse_xml_for_markers(xml_path, fps=50):
                 except:
                     title = "Shot Mark"
                 
+                # Calculation now uses the dynamic fps value
                 time_us = int(frame_count * (1000000 / fps))
                 markers.append({"start": time_us, "title": title})
         
@@ -95,7 +108,6 @@ def parse_xml_for_markers(xml_path, fps=50):
     except Exception as e:
         print(f"Error parsing {os.path.basename(xml_path)}: {e}")
         return []
-
 # ==============================
 # AUTOMATIC INJECTION
 # ==============================
