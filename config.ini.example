@@ -1,0 +1,13 @@
+[PATHS]
+# Path to your CapCut folder where projects are stored.
+# Windows typical path: C:\Users\YourName\AppData\Local\CapCut\User Data\Projects
+capcut_projects_folder = C:\Path\To\Your\CapCut Drafts
+
+# Folder where your Sony FX3 XML files (.XML) are located.
+# These are usually found in the M4ROOT/CLIP folder on your SD card.
+xml_folder = C:\Path\To\Your\Sony\XML\Files
+
+[SETTINGS]
+# The color of the markers in CapCut. 
+# Typical colors: #00c1cd (Teal), #FC7265 (Coral/Red), #ffbc00 (Yellow)
+default_color = #FC7265
